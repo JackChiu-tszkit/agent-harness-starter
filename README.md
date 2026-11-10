@@ -14,19 +14,19 @@ A raw model call has no durable session, no allowlist, and no bound on how many 
 
 ```mermaid
 flowchart TD
-    user[User request] --> api[FastAPI]
-    api --> session[Session and context]
-    session --> graph[LangGraph runtime]
-    graph --> prompt[Prompt and policy]
-    graph --> router[Model and tool router]
-    router --> model[Mock model or OpenAI-compatible provider]
-    router --> guard[Guardrails]
-    guard --> tools[Local tools or MCP client]
-    tools --> mcp[MCP server]
-    graph --> memory[SQLite session state]
-    graph --> checkpoint[LangGraph SQLite checkpoints]
-    graph --> response[Validated response]
-    graph --> otel[Logs, traces, and metrics]
+    user["User request"] --> api["FastAPI"]
+    api --> session["Session and context"]
+    session --> runtime["LangGraph runtime"]
+    runtime --> prompt["Prompt and policy"]
+    runtime --> router["Model and tool router"]
+    router --> model["Mock model or OpenAI-compatible provider"]
+    router --> guard["Guardrails"]
+    guard --> tools["Local tools or MCP client"]
+    tools --> mcpServer["MCP server"]
+    runtime --> memory["SQLite session state"]
+    runtime --> checkpoint["LangGraph SQLite checkpoints"]
+    runtime --> response["Validated response"]
+    runtime --> otel["Logs, traces, and metrics"]
 ```
 
 More detail is in [docs/architecture.md](docs/architecture.md) and [docs/design-decisions.md](docs/design-decisions.md).
