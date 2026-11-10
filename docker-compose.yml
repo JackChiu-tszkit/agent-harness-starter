@@ -1,0 +1,16 @@
+services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      AGENT_HARNESS_MODEL_PROVIDER: mock
+      AGENT_HARNESS_DATABASE_PATH: /data/harness.db
+      AGENT_HARNESS_OTEL_EXPORTER: console
+      AGENT_HARNESS_HOST: 0.0.0.0
+      AGENT_HARNESS_PORT: "8000"
+    volumes:
+      - harness-data:/data
+
+volumes:
+  harness-data:

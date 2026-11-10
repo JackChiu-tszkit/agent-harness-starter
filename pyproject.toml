@@ -1,0 +1,45 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "agent-harness-starter"
+version = "0.1.0"
+description = "A modular, observable, and extensible Python Agent Harness built with LangGraph, MCP, FastAPI, and OpenTelemetry."
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+authors = [{ name = "Agent Harness Starter contributors" }]
+dependencies = [
+    "fastapi==0.162.2",
+    "httpx==0.28.1",
+    "langgraph==1.2.20",
+    "langgraph-checkpoint-sqlite==3.1.3",
+    "mcp==2.3.0",
+    "opentelemetry-api==1.45.2",
+    "opentelemetry-sdk==1.45.2",
+    "pydantic==2.14.3",
+    "uvicorn==0.54.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest==9.2.0", "ruff==0.17.4"]
+
+[project.scripts]
+agent-harness = "agent_harness.__main__:main"
+agent-harness-mcp = "agent_harness.mcp.server:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+src = ["src", "tests", "examples"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
